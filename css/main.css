@@ -1,0 +1,309 @@
+* 
+{
+	padding: 0;
+	margin: 0;
+}
+
+body
+{
+    background: #000;
+    margin: 10px 50px;
+    font-family: 'Chewy', arial, sans-serif;
+}
+
+aside
+{
+    font-size: small;
+}
+
+.hide
+{
+    display: none;
+}
+
+.block 
+{
+	display: block;
+}
+
+ul
+{
+	list-style-type: none;
+}
+
+#wrapper
+{
+	width: 800px;
+    margin: 0px auto;
+}
+
+#logo
+{	
+	width: 40%;
+	margin: 0px 30%;
+}
+
+h3
+{
+    margin-bottom: 5px;
+}
+
+.span-hp, .span-hp-max
+{
+	height: 10px;
+	width: 100%;	
+	display: inline-block;
+	-webkit-border-radius: 0px 3px 3px 0px;
+	-moz-border-radius: 0px 3px 3px 0px;
+	border-radius: 0px 3px 3px 0px;
+	position: absolute;
+	left: 0px;
+}
+
+.span-hp-max
+{
+	background: #800000;
+}
+
+.span-hp
+{
+	background: #ff0000;
+}
+
+/*************************************************
+ ** 		G A M E 		W I N D O W			**
+ *************************************************/
+
+#game-window
+{
+	width: 800px;
+	height: 450px;
+	margin: 0px auto;
+	background: url(../images/dojo_background.jpg);
+	position: relative;
+}
+
+/*****************************************************
+ ** 		S P L A S H         S C R E E N			**
+ *****************************************************/
+
+.splash
+{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	background: rgba(0, 0, 0, 0.8);	
+	z-index: 100;
+}
+
+.splash img
+{
+	display: block;
+	margin: 0px auto;
+}
+
+.splash h1
+{
+    margin-top: 40px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    color: white;
+}
+
+#intro-screen
+{
+    background: black;
+    color: white;
+}
+
+#progressbar
+{
+    width: 80%;
+    margin: 0px 10%;
+}
+
+#intro-screen-help ul
+{
+	list-style-type: disc;
+	list-style-position: inside;
+}
+
+#intro-screen-help ul li
+{
+	font-size: 26px;	
+	line-height: 1.5em;
+	margin: 0px 10%;
+}
+
+#btnStart
+{
+	font-size: 30px;
+	font-family: 'Chewy', arial, sans-serif;
+	margin: 40px 10%;
+}
+
+#game-over-screen h1, #congratulation-screen h1
+{
+	margin-top: 150px;
+	font-size: 80px;
+}
+
+/*************************************************************
+ ** 		O P P O N E N T			W I N D O W 			**
+ *************************************************************/
+
+#opponent-window
+{
+	height: 290px;
+	width: 100%;
+	padding: 10px 0px 0px 0px;
+	position: relative;
+}
+
+#info-box, #score-box
+{
+	position: absolute;
+	top: 10px;
+	overflow: hidden;
+	color: #fff;
+	font-size: 16px;
+}
+
+#info-box
+{
+	left: 10px;	
+}
+
+#opponent-span-name, #player-span-name
+{
+	font-size: 24px;
+	letter-spacing: 2px;
+	word-spacing: 4px;
+	margin-right: 10px;
+}
+
+#opponent-hp-meter, #player-hp-meter
+{
+	width: 120px;
+	height: 10px;
+	display: inline-block;
+	position: relative;	
+}
+
+#opponent-hp-meter .span-hp-max
+{
+	z-index: 0;
+}
+
+#opponent-hp-meter .span-hp
+{
+	z-index: 1;
+}
+
+#score-box
+{
+	right: 10px;
+}
+
+#player-span-score, #player-span-hi-score
+{
+	width: 80px;
+	text-align: right;
+	display: inline-block;
+}
+
+#opponent-img
+{
+	position: inherit;
+	margin: 0px auto;
+	display: block;	
+}
+
+img.opponent
+{
+	height: 290px;	
+}
+
+#press-enter-sign
+{
+	position: absolute;
+	height: 100px;
+	top: 200px;;
+	left: 10px;
+}
+
+/*****************************************************
+ ** 		D I A L O G 		W I N D O W			**
+ *****************************************************/
+
+#dialog-window
+{
+	display: block;
+	height: 110px;
+	background: rgba(186, 127, 7, 0.8);
+	border-style: ridge;
+	border-width: 10px;
+	border-color: #4d2a0e;
+	padding: 10px;
+	font-size: 24px;
+	letter-spacing: 2px;
+	word-spacing: 4px;
+	line-height: 1.1em;
+}
+
+#dialog
+{
+	word-wrap: break-word;
+}
+
+#dialog-window.question-mode
+{
+	font-size: 45px;
+	letter-spacing: 8px;
+	word-spacing: 16px;
+}
+
+#answer-box
+{
+	font-size: 40px;
+	padding: 3px;
+	width: 150px;
+}
+
+#dialog-window img
+{
+	height: 40px;
+}
+
+@-webkit-keyframes redPulse 
+{
+    from { -webkit-box-shadow: 0 0 9px #f00; }
+    50% { -webkit-box-shadow: 0 0 18px #f00; }
+    to { -webkit-box-shadow: 0 0 9px #f00; }
+}
+
+#time-meter
+{
+    display: block;
+    width: 100%;
+    height: 15px;
+    margin-top: 10px;
+    background-color: #0f0;
+}
+
+#time-meter.middle
+{
+    background-color: #ff0;
+}
+
+#time-meter.lastleg
+{
+    background-color: #f00;
+    -webkit-animation-name: redPulse;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite;
+}

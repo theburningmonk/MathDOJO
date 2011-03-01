@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>MathDOJO</title>
+	
+	<link type="text/css" rel="stylesheet" href="css/main.css"/>
+    <link type="text/css" rel="Stylesheet" href="css/swanky-purse/jquery-ui-1.8.9.custom.css" />
+	<link  href="http://fonts.googleapis.com/css?family=Chewy:regular" rel="stylesheet" type="text/css" >
+	<link rel="shortcut icon" href="favicon.ico"/>
+	
+	<script type="text/javascript" src="js/jquery/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery-ui-1.8.9.custom.min.js"></script>
+    <script type="text/javascript" src="js/modernizr/modernizr-1.6.min.js"></script>
+	<script type="text/javascript" src="js/mootools/mootools-core-compressed-1.3.js"></script>
+	<script type="text/javascript" src="js/mootools/mootools-more-compressed-1.3.js"></script>
+
+	<script type="text/javascript">
+	    var backgroundImg = "images/dojo_background.jpg",
+            guardImg = "images/guard.png",
+            sumoImg = "images/sumo.png",
+            samuraiImg = "images/samurai.png",
+            karateTeacherImg = "images/karate_teacher.png",
+            karateMasterImg = "images/karate_master.png",
+            wushuMasterImg = "images/wushu_master.png",
+            taichiMasterImg = "images/taichi_master.png";
+        var opponentsScript = "js/game/game.opponents.js",
+            engineScript = "js/game/game.engine.js";
+        var overallProgress = 0;
+
+        // Loads the specified javascript file, once the script is loaded increment the overall progress by the 
+        // specified amount and update the supplied progress bar
+        function loadScript(progressbar, script, perc) {
+            // load the game specific scripts
+            new Asset.javascript(script, {
+                events: {
+                    load: function () {
+                        overallProgress += perc;
+                        progressbar.progressbar("option", "value", overallProgress);
+                    }
+                }
+            });
+        }
+
+        // Loads the specified array of images, upon loading each image increment the overall progress by the
+        // specified amount and update the supplied progress bar
+        function loadImages(progressbar, images, perc) {
+            new Asset.images(images, {
+                onProgress: function (counter, index) {
+                    overallProgress += perc;
+                    progressbar.progressbar("option", "value", overallProgress);
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            $(".splash").hide();
+            $("#intro-screen").show();
+
+            // initialize the progress bar
+            var progressbar = $("#progressbar");
+            progressbar.progressbar({ value: overallProgress });
+
+            // load the scripts and images
+            loadScript(progressbar, opponentsScript, 10);
+            loadScript(progressbar, engineScript, 10);
+
+            var images = [backgroundImg, guardImg, sumoImg, samuraiImg, karateTeacherImg, karateMasterImg, wushuMasterImg, taichiMasterImg];
+            loadImages(progressbar, images, 10);
+
+            // check every 100 milliseconds if the overall progress is 100%
+            var loadInterval = setInterval(function () {
+                if (overallProgress >= 100) {
+                    clearInterval(loadInterval);
+
+                    $("#intro-screen > h1 > span").html("Loading complete");
+
+                    $("#intro-screen-help").show();
+
+                    $("#btnStart").button().show().click(function () {                        
+                        $("#intro-screen").hide();
+
+                        start();
+                    });
+                }
+            }, 100);
+        });
+	</script>
+
+	<script type="text/javascript">
+
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-12216268-1']);
+		_gaq.push(['_setDomainName', '.theburningmonk.com']);
+		_gaq.push(['_trackPageview']);
+
+		(function () {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+
+	</script>
+</head>
+<body>
+	<div id="wrapper">
+		<img id="logo" src="images/logo.png"/>        
+		<span id="message"></span>		
+
+        <div id="game-window">
+			<div id="opponent-window">
+				<img id="opponent-img" class="opponent"/>
+
+                <table id="info-box">
+                    <tr>
+                        <td><span id="opponent-span-name"></span></td>
+                        <td>
+                            HP
+						    <div id="opponent-hp-meter">
+							    <span id="opponent-span-hp-max" class="span-hp-max"></span>
+							    <span id="opponent-span-hp" class="span-hp"></span>
+						    </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span id="player-span-name">You</span></td>
+                        <td>
+                            HP
+						    <div id="player-hp-meter">
+							    <span id="player-span-hp-max" class="span-hp-max"></span>
+							    <span id="player-span-hp" class="span-hp"></span>
+						    </div>
+                        </td>
+                    </tr>
+                </table>
+
+                <table id="score-box">
+                    <tr>
+                        <td>Score</td>
+                        <td><span id="player-span-score">0</span></td>
+                    </tr>
+                    <tr>
+                        <td>Hi-Score</td>
+                        <td><span id="player-span-hi-score">0</span></td>
+                    </tr>
+                </table>
+
+                <img id="press-enter-sign" src="images/press-enter.gif"/>
+			</div>
+
+			<div id="dialog-window">
+				<span id="dialog"></span>
+				<input id="answer-box" type="text" class="hide"/>
+                <img id="wrong-answer-sign" src="images/cross.png" class="hide" />
+                <img id="correct-answer-sign" src="images/tick.png" class="hide" />
+                <span id="time-meter" class="hide"></span>                
+			</div>
+
+            <div id="intro-screen" class="splash">
+                <h1><span>Loading...</span></h1>
+                <div id="progressbar"></div>
+                <div id="intro-screen-help" class="hide">
+                    <h1>How to Play</h1>
+                    <ul>
+                        <li>Press the ENTER key to get through the dialogues</li>
+                        <li>Answer the questions the opponents throw at you</li> 
+                        <li>Hit the ENTER key to submit your answer</li>
+                        <li>Answer quickly to get a higher score</li>
+                    </ul>
+                </div>
+                <a id="btnStart" href="#" class="hide">I'm Ready!</a>
+            </div>
+
+            <div id="congratulation-screen" class="splash">
+                <h1>YOU WON!</h1>
+            </div>
+
+            <div id="game-over-screen" class="splash">
+                <h1>GAME OVER</h1>
+            </div>
+        </div>
+	</div>
+</body>
+</html>
