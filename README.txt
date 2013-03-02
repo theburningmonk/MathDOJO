@@ -11,7 +11,7 @@ This is dojo-themed mini game aimed to test your ability to do simple maths calc
 
 LIVE DEMO:
 
-You can try the live demo at http://mathdojo.theburningmonk.com or http://LNK.by/fgzcu.
+You can try the live demo at http://mathdojo.theburningmonk.com or http://bit.ly/Wz5GwS.
 
 THIRD-PARTY LIBRARIES:
 * jQuery (in js/jquery)
