@@ -31,3 +31,7 @@ CSS:
 
 HTML:
 * mojo.html: This file contains all the HTML markup for the game, including the initial loading screen
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/theburningmonk/mathdojo/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
